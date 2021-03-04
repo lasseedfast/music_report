@@ -1,36 +1,41 @@
 #! python3
-import pandas as pd
+import pyperclip
 
-# Import clipboard to dataframe
-## There's something off with the format when copied frmo Hindenburg,
-## therefore the extra column
-df = pd.read_clipboard(
-    sep="\t", names=["offset", "duration", "title", "artist", "album", ""]
-)
-df.drop(["album", "", "offset"], axis=1, inplace=True)
+def get_seconds(t):
+    """ Translates duration to seconds """
+    return int(t[: t.find(":")]) * 60 + int(t[t.find(":") + 1 :])
 
-# Translate duration for each clip to seconds
-df["seconds"] = df.duration.apply(
-    lambda x: int(x[: x.find(":")]) * 60 + int(x[x.find(":") + 1 :])
-)
+# Get data from clipboard
+rows = pyperclip.paste().split('\n')
 
-# Open and prepare file
+# Dict to fill with info
+d = {}
+
+# Get data into dict
+for row in rows:
+    l = row.split('\t')
+    if len(l) < 3: # Filter out empty rows
+        continue
+    title = l[2]
+    duration = l[1]
+    if title in d:
+        d[title] = {'duration': d[title]['duration'] + get_seconds(duration), 'artist': l[3]}
+    else:
+        d[title] = {'duration': get_seconds(duration), 'artist': l[3]}
+
+# Write to file
 with open("Music Report.csv", "a+") as f:
     f.truncate(0)
     f.write("Title\tArtist\tDuration\n")
-
-    # Sum the duration for all clips with the same title
-    for title in df.groupby("title"):
-        minutes = str(int(title[1].seconds.sum() / 60))
-        seconds = str(int(title[1].seconds.sum() % 60))
+    for key, value in d.items():
+        minutes = str(int(value['duration'] / 60))
+        seconds = str(int(value['duration'] % 60))
         if len(seconds) == 1:
             seconds = seconds + str(0)
-
-        # Write to file
         f.write(
             "{title}\t{artist}\t{duration}\n".format(
-                title=title[0],
-                artist=title[1].artist.tolist()[0],
+                title=key,
+                artist=value['artist'],
                 duration=minutes + ":" + seconds,
             )
         )

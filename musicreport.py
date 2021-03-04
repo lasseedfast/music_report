@@ -17,7 +17,7 @@ df["seconds"] = df.duration.apply(
 # Open and prepare file
 with open("Music Report.csv", "a+") as f:
     f.truncate(0)
-    f.write("title\tartist\tduration\n")
+    f.write("Title\tArtist\tDuration\n")
 
     # Sum the duration for all clips with the same title
     for title in df.groupby("title"):

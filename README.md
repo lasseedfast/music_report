@@ -19,4 +19,4 @@ Choose File > Music Report, then Copy
 
 Write "python" and then drag the musicreport.py file into the terminal window, should then look like _python users/path/to/musicreport.py_
 
-_You can start in Hindnburg, just make sure you're not copying anything – like a path – before you run the script as the script gets the info from clipboard.
+_You can start in Hindenburg, just make sure you're not copying anything – like a path – before you run the script as the script gets the info from clipboard.

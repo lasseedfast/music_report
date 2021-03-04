@@ -1,6 +1,6 @@
 ### Description
 
-I love the Music Report feature built in into [Hindenburg] (https://hindenburg.com/products/hindenburg-journalist-pro) but when using many short clips from each song – as I do when editing documentaries – the output gets a bit messy and one have to sum the duration for every title, including converting minutes/seconds forth and back. This script takes the output from Music Report (it gets copied into clipboard) and outputs a csv-file with title, artist and total duration for each song.
+I love the Music Report feature built in into [Hindenburg](https://hindenburg.com/products/hindenburg-journalist-pro) but when using many short clips from each song – as I do when editing documentaries – the output gets a bit messy and one have to sum the duration for every title, including converting minutes/seconds forth and back. This script takes the output from Music Report (it gets copied into clipboard) and outputs a csv-file with title, artist and total duration for each song.
 
 
 ### Instructions

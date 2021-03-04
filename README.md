@@ -5,7 +5,7 @@ I love the Music Report feature built in into [Hindenburg](https://hindenburg.co
 
 ### Instructions
 
-_Make sure you have Pandas installed, else run pip install pandas_
+_Make sure you have pyperclip installed, else run pip install pyperclip_
 
 
 **In terminal:**

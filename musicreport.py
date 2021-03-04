@@ -32,7 +32,7 @@ for row in rows:
 with open("Music Report.csv", "a+") as f:
     f.truncate(0)
     f.write("Title\tArtist\tDuration\n")
-    for key, value in d.items():
+    for key, value in sorted(d.items()):
         minutes = str(int(value["duration"] / 60))
         seconds = str(int(value["duration"] % 60))
         if len(seconds) == 1:
